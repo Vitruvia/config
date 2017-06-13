@@ -130,3 +130,5 @@ alias config='/usr/bin/git --git-dir=/home/thales/.cfg/ --work-tree=/home/thales
 alias config='/usr/bin/git --git-dir=/home/thales/.cfg/ --work-tree=/home/thales'
 alias config='/usr/bin/git --git-dir=/home/thales/.cfg/ --work-tree=/home/thales'
 alias config='/usr/bin/git --git-dir/home/thales/.cfg/ --work-tree=/home/thales'
+alias config='/usr/bin/git --git-dir=/home/thales/.cfg/ --work-tree=/home/thales'
+alias config='/usr/bin/git --git-dir=/home/thales/.cfg/ --work-tree=/home/thales'

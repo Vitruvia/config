@@ -36,6 +36,12 @@ filetype off                  " required
  Plugin 'tpope/vim-repeat'
  Plugin 'tpope/vim-surround'
  Plugin 'guns/vim-clojure-highlight'
+ Plugin 'https://github.com/jalvesaq/Nvim-R'
+ Plugin 'https://github.com/jalvesaq/colorout'
+ Plugin 'https://github.com/tpope/vim-unimpaired'
+ Plugin 'https://github.com/xolox/vim-session'
+ Plugin 'https://github.com/xolox/vim-misc'
+ 
 let g:rainbow_active = 1
  "  All of your Plugins must be added before the following line
  call vundle#end()            " required
@@ -72,7 +78,7 @@ let g:rainbow_conf = {
 	\		'vim': {
 	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
 	\		},
-	\		'html': {
+\		'html': {
 	\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
 	\		},
 	\		'css': 0,
@@ -82,3 +88,25 @@ let g:rainbow_conf = {
 
  
 let g:rainbow_active = 1
+set hidden
+
+"Autoexpand filepath
+cnoremap <expr> %%  getcmdtype() == ':' ? expand('%:h').'/' : '%%' 
+
+"vim-session options
+let g:session_autoload='yes'
+let g:session_autosave='yes'
+
+"Key Mappings
+nnoremap ç ^
+nnoremap Ç $
+
+
+"Nvim-R settings
+"
+"Autostart R
+autocmd FileType r if string(g:SendCmdToR) == "function('SendCmdToR_fake')" | call StartR("R") | endif
+autocmd FileType rmd if string(g:SendCmdToR) == "function('SendCmdToR_fake')" | call StartR("R") | endif
+"Evaluate line or selection with spacebar
+vmap <Space> <Plug>RDSendSelection
+nmap <Space> <Plug>RDSendLine
