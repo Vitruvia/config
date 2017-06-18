@@ -93,7 +93,10 @@ let g:session_autosave_periodic = 5
     inoremap <Left> <nop>
     inoremap <Right> <nop>
 
-    " Copy to clipboard
+    "## Disable mouse
+    set mouse=
+
+    "## Copy to clipboard
     vnoremap  <leader>y  "+y
     nnoremap  <leader>Y  "+yg_
     nnoremap  <leader>y  "+y
@@ -103,7 +106,8 @@ let g:session_autosave_periodic = 5
     nnoremap <leader>P "+P
     vnoremap <leader>p "+p
     vnoremap <leader>P "+P
-
+    
+    " Todo -- Config statusline
 
 "Nvim-R settings
 
