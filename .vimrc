@@ -1,79 +1,27 @@
-
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-"Plugins
-    "set the runtime path to include Vundle and initialize
-     set rtp+=~/.config/nvim/bundle/Vundle.vim
-     call vundle#begin()
-     "  let Vundle manage Vundle, required
-     Plugin 'VundleVim/Vundle.vim'
-         "
-     "##Faster editing and navigation
-     Plugin 'https://github.com/tpope/vim-unimpaired'              "Complements pairings of mappings
-     Plugin 'tpope/vim-surround'                                   "Quicker placement of parenthesis and others
-     Plugin 'tpope/vim-repeat'                                     "Allows '.' to repeat plugin commands as well as default vim commands
-     Plugin 'https://github.com/tpope/vim-commentary'              "For commenting
-     Plugin 'guns/vim-sexp'                                        "Quicker navigation of surrounding elements
-     Plugin 'tpope/vim-sexp-mappings-for-regular-people'
-     Plugin 'https://github.com/xolox/vim-session'                 "Makes it easier to save a session
-     Plugin 'https://github.com/xolox/vim-misc'                    "Necessary with vim-sessions
-     "##Clojure
-     Plugin 'tpope/vim-fireplace'                                  "Clojure Repl
-     Plugin 'guns/vim-clojure-static'                              "Syntax highlighting, identation, autocompletion
-     Plugin 'guns/vim-clojure-highlight'                           "Extends highlighting
-     " ##R
-     Plugin 'https://github.com/jalvesaq/Nvim-R'                   "Integrates vim with R
-     Plugin 'https://github.com/jalvesaq/colorout'                 "Colorizes R output, works only on linux and OSX
-    "##Markdown
-     Plugin 'https://github.com/tpope/vim-markdown'
-     Plugin 'https://github.com/nelstrom/vim-markdown-folding'
-    "##Themes
-     Plugin 'luochen1990/rainbow'                                  "Makes parenthesis look better
-     Plugin 'https://github.com/lu-ren/SerialExperimentsLain'
-    "##Writing and note taking
-     Plugin 'https://github.com/beloglazov/vim-online-thesaurus'   "Searches word on a thesaurus
-     Plugin 'https://github.com/vimwiki/vimwiki'                   "Enables a wiki on vim
-
-    
-     "  All of your Plugins must be added before the following line
-     call vundle#end()           " required
-     filetype plugin indent on
-     "  To ignore plugin indent changes, instead use:
-     " filetype plugin on
-     " 
-     " Brief help
-     " :PluginList       - lists configured plugins
-     " :PluginInstall    - installs plugins; append `!` to update or just
-     " :PluginUpdate
-     " :PluginSearch foo - searches for foo; append `!` to refresh local cache
-     " :PluginClean      - confirms removal of unused plugins; append `!` to
-     " auto-approve removal
-     "
-     " see :h vundle for more details or wiki for FAQ
-     " Put your non-Plugin stuff after this line
- "
-
-
-"General config
+"# General configuration
+    set nocompatible              " be iMproved, required
+    filetype off                  " required
     set number   "Show line Numbers
     set hidden   "Allow Hidden Buffers
 
     "## Autoexpand filepath
     cnoremap <expr> %%  getcmdtype() == ':' ? expand('%:h').'/' : '%%' 
 
-    "##Tabs and spacing
+    "## Tabs and spacing
     set tabstop=4       "Size of a hard Tabstop
     set expandtab       "Always use spaces instead of tab characters
     set shiftwidth=4    "Size of an indent
     set softtabstop=4   "Columns per TAB
+    
+    "## Windowsize on GUI
+    if has("gui_running")
+        set lines = 40
+        set columns = 140
+    endif
 
-"vim-session options
-let g:session_autoload='yes'
-let g:session_autosave='no'
-let g:session_autosave_periodic = 5
-
-"Key Mappings
+    "## Todo -- Config statusline
+ 
+"# Key Mappings
     "## Beginning and and of Line
     nnoremap ç ^
     vnoremap ç ^
@@ -101,26 +49,114 @@ let g:session_autosave_periodic = 5
     nnoremap  <leader>Y  "+yg_
     nnoremap  <leader>y  "+y
     
-    " Paste from clipboard
+    "## Paste from clipboard
     nnoremap <leader>p "+p
     nnoremap <leader>P "+P
     vnoremap <leader>p "+p
     vnoremap <leader>P "+P
     
-    " Todo -- Config statusline
 
-"Nvim-R settings
+"# Plugin installation with Vundle
+    "## set the runtime path to include Vundle and initialize
+     set rtp+=~/.config/nvim/bundle/Vundle.vim
+     call vundle#begin()
 
-    "Autostart R
-    autocmd FileType r if string(g:SendCmdToR) == "function('SendCmdToR_fake')" | call StartR("R") | endif
-    autocmd FileType rmd if string(g:SendCmdToR) == "function('SendCmdToR_fake')" | call StartR("R") | endif
-    "Evaluate line or selection with spacebar
-    vmap <Space> <Plug>RDSendSelection
-    nmap <Space> <Plug>RDSendLine
+    "## let Vundle manage Vundle, required
+     Plugin 'VundleVim/Vundle.vim'
+
+    "## Faster editing and navigation
+     Plugin 'https://github.com/tpope/vim-unimpaired'              "Complements pairings of mappings
+     Plugin 'tpope/vim-surround'                                   "Quicker placement of parenthesis and others
+     Plugin 'tpope/vim-repeat'                                     "Allows '.' to repeat plugin commands as well as default vim commands
+     Plugin 'https://github.com/tpope/vim-commentary'              "For commenting
+     Plugin 'guns/vim-sexp'                                        "Quicker navigation of surrounding elements
+     Plugin 'tpope/vim-sexp-mappings-for-regular-people'
+     Plugin 'https://github.com/xolox/vim-session'                 "Makes it easier to save a session
+     Plugin 'https://github.com/xolox/vim-misc'                    "Necessary with vim-sessions
+
+    "## Clojure
+     Plugin 'tpope/vim-fireplace'                                  "Clojure Repl
+     Plugin 'guns/vim-clojure-static'                              "Syntax highlighting, identation, autocompletion
+     Plugin 'guns/vim-clojure-highlight'                           "Extends highlighting
+
+    "## R
+     Plugin 'https://github.com/jalvesaq/Nvim-R'                   "Integrates vim with R
+     Plugin 'https://github.com/jalvesaq/colorout'                 "Colorizes R output, works only on linux and OSX
+
+    "## Markdown
+     Plugin 'https://github.com/tpope/vim-markdown'
+     Plugin 'https://github.com/nelstrom/vim-markdown-folding'
+
+    "## Themes
+     Plugin 'luochen1990/rainbow'                                  "Makes parenthesis look better
+     Plugin 'https://github.com/lu-ren/SerialExperimentsLain'
+     
+    "## Writing and note taking
+     Plugin 'https://github.com/beloglazov/vim-online-thesaurus'   "Searches word on a thesaurus
+     Plugin 'https://github.com/vimwiki/vimwiki'                   "Enables a wiki on vim
+
+    
+     "  All of your Plugins must be added before the following line
+     call vundle#end()           " required
+     filetype plugin indent on
+     "  To ignore plugin indent changes, instead use:
+     " filetype plugin on
+     " 
+     " Brief help
+     " :PluginList       - lists configured plugins
+     " :PluginInstall    - installs plugins; append `!` to update or just
+     " :PluginUpdate
+     " :PluginSearch foo - searches for foo; append `!` to refresh local cache
+     " :PluginClean      - confirms removal of unused plugins; append `!` to
+     " auto-approve removal
+     "
+     " see :h vundle for more details or wiki for FAQ
+     " Put your non-Plugin stuff after this line
+ "
 
 
+"# Individual Plugin Options
+    "## vim-session
+    let g:session_autoload='yes'
+    let g:session_autosave='no'
+    let g:session_autosave_periodic = 5
 
-"Colorscheme
+    "## Nvim-R
+        "Autostart R
+        autocmd FileType r if string(g:SendCmdToR) == "function('SendCmdToR_fake')" | call StartR("R") | endif
+        autocmd FileType rmd if string(g:SendCmdToR) == "function('SendCmdToR_fake')" | call StartR("R") | endif
+        "Evaluate line or selection with spacebar
+        vmap <Space> <Plug>RDSendSelection
+        nmap <Space> <Plug>RDSendLine
+
+
+    "## Rainbow Parenthesis
+    let g:rainbow_conf = {
+        \	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+        \	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+        \	'operators': '_,_',
+        \	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+        \	'separately': {
+        \		'*': {},
+        \		'tex': {
+        \			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+        \		},
+        \		'lisp': {
+        \			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+        \		},
+        \		'vim': {
+        \			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+        \		},
+    \		'html': {
+        \			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+        \		},
+        \		'css': 0,
+        \	}
+        \}
+    let g:rainbow_active = 1
+
+
+"# Colorscheme
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
@@ -139,27 +175,3 @@ endif
 syntax enable
 colorscheme SerialExperimentsLain
 
-" Rainbow Parenthesis
-let g:rainbow_conf = {
-	\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-	\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-	\	'operators': '_,_',
-	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-	\	'separately': {
-	\		'*': {},
-	\		'tex': {
-	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-	\		},
-	\		'lisp': {
-	\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-	\		},
-	\		'vim': {
-	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-	\		},
-\		'html': {
-	\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-	\		},
-	\		'css': 0,
-	\	}
-	\}
-let g:rainbow_active = 1
