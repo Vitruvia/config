@@ -1,61 +1,3 @@
-"# General configuration
-    set nocompatible              " be iMproved, required
-    filetype off                  " required
-    set number   "Show line Numbers
-    set hidden   "Allow Hidden Buffers
-
-    "## Autoexpand filepath
-    cnoremap <expr> %%  getcmdtype() == ':' ? expand('%:h').'/' : '%%' 
-
-    "## Tabs and spacing
-    set tabstop=4       "Size of a hard Tabstop
-    set expandtab       "Always use spaces instead of tab characters
-    set shiftwidth=4    "Size of an indent
-    set softtabstop=4   "Columns per TAB
-    
-    "## Windowsize on GUI
-    if has("gui_running")
-        set lines = 40
-        set columns = 140
-    endif
-
-    "## Todo -- Config statusline
- 
-"# Key Mappings
-    "## Beginning and and of Line
-    nnoremap ç ^
-    vnoremap ç ^
-    onoremap ç ^
-    nnoremap Ç $
-    vnoremap Ç $
-    onoremap Ç $
-
-    "## Unmapping arrows in normal and insert mode
-    noremap <Up> <nop>
-    noremap <Down> <nop>
-    noremap <Left> <nop>
-    noremap <Right> <nop>
-
-    inoremap <Up> <nop>
-    inoremap <Down> <nop>
-    inoremap <Left> <nop>
-    inoremap <Right> <nop>
-
-    "## Disable mouse
-    set mouse=
-
-    "## Copy to clipboard
-    vnoremap  <leader>y  "+y
-    nnoremap  <leader>Y  "+yg_
-    nnoremap  <leader>y  "+y
-    
-    "## Paste from clipboard
-    nnoremap <leader>p "+p
-    nnoremap <leader>P "+P
-    vnoremap <leader>p "+p
-    vnoremap <leader>P "+P
-    
-
 "# Plugin installation with Vundle
     "## set the runtime path to include Vundle and initialize
      set rtp+=~/.config/nvim/bundle/Vundle.vim
@@ -175,3 +117,60 @@ endif
 syntax enable
 colorscheme SerialExperimentsLain
 
+
+"# General configuration
+    set nocompatible              " be iMproved, required
+    filetype off                  " required
+    set number   "Show line Numbers
+    set hidden   "Allow Hidden Buffers
+
+    "## Autoexpand filepath
+    cnoremap <expr> %%  getcmdtype() == ':' ? expand('%:h').'/' : '%%' 
+
+    "## Tabs and spacing
+    set tabstop=4       "Size of a hard Tabstop
+    set expandtab       "Always use spaces instead of tab characters
+    set shiftwidth=4    "Size of an indent
+    set softtabstop=4   "Columns per TAB
+    
+    "## Windowsize on GUI
+    if has("gui_running")
+        set lines = 40
+        set columns = 140
+    endif
+
+    "## Todo -- Config statusline
+ 
+"# Key Mappings
+    "## Beginning and and of Line
+    nnoremap ç ^
+    vnoremap ç ^
+    onoremap ç ^
+    nnoremap Ç $
+    vnoremap Ç $
+    onoremap Ç $
+
+    "## Unmapping arrows in normal and insert mode
+    noremap <Up> <nop>
+    noremap <Down> <nop>
+    noremap <Left> <nop>
+    noremap <Right> <nop>
+
+    inoremap <Up> <nop>
+    inoremap <Down> <nop>
+    inoremap <Left> <nop>
+    inoremap <Right> <nop>
+
+    "## Disable mouse
+    set mouse=
+
+    "## Copy to clipboard
+    vnoremap  <leader>y  "+y
+    nnoremap  <leader>Y  "+yg_
+    nnoremap  <leader>y  "+y
+    
+    "## Paste from clipboard
+    nnoremap <leader>p "+p
+    nnoremap <leader>P "+P
+    vnoremap <leader>p "+p
+    vnoremap <leader>P "+P
