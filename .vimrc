@@ -1,3 +1,5 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
 "# Plugin installation with Vundle
     "## set the runtime path to include Vundle and initialize
     set rtp+=~/.vim/bundle/Vundle.vim
@@ -119,8 +121,6 @@ colorscheme SerialExperimentsLain
 
 
 "# General configuration
-    set nocompatible              " be iMproved, required
-    filetype off                  " required
     set number   "Show line Numbers
     set hidden   "Allow Hidden Buffers
 
