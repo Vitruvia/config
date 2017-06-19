@@ -37,7 +37,7 @@ filetype off                  " required
      
     "## Writing and note taking
      Plugin 'https://github.com/beloglazov/vim-online-thesaurus'   "Searches word on a thesaurus
-     Plugin 'https://github.com/vimwiki/vimwiki'                   "Enables a wiki on vim
+     Plugin 'https://github.com/vimwiki/vimwiki'                   "a wiki on vim
 
     
      "  All of your Plugins must be added before the following line
@@ -135,8 +135,7 @@ colorscheme SerialExperimentsLain
     
     "## Windowsize on GUI
     if has("gui_running")
-        set lines = 40
-        set columns = 140
+        set -qwindowgeometry 800x600
     endif
 
     "## Todo -- Config statusline
@@ -161,6 +160,12 @@ colorscheme SerialExperimentsLain
     inoremap <Left> <nop>
     inoremap <Right> <nop>
 
+    "## Makes navigation easier in wrapped lines
+    noremap j gj
+    noremap k gk
+    noremap gj j 
+    noremap gk k
+
     "## Disable mouse
     set mouse=
 
@@ -174,3 +179,12 @@ colorscheme SerialExperimentsLain
     nnoremap <leader>P "+P
     vnoremap <leader>p "+p
     vnoremap <leader>P "+P
+    
+    "## Text Wrapping
+    set textwidth=72
+    set wrapmargin=2
+    set fo+=t
+    set fo-=l
+    set wrap
+    set nolist
+    
