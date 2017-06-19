@@ -118,9 +118,7 @@ colorscheme SerialExperimentsLain
     set softtabstop=4   "Columns per TAB
     
     "## Windowsize on GUI
-    if has("gui_running")
-        set geometry 500x320 
-    endif
+    au GUIEnter * simalt ~x
 
     "## Todo -- Config statusline
  
