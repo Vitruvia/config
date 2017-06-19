@@ -117,10 +117,10 @@ colorscheme SerialExperimentsLain
     set shiftwidth=4    "Size of an indent
     set softtabstop=4   "Columns per TAB
     
-    "## Windowsize on GUI
-    au GUIEnter * simalt ~x
+    "## TODO -- Windowsize on GUI
+     call rpcnotify(0, 'Gui', 'WindowMaximized', 1)
 
-    "## Todo -- Config statusline
+    "## TODO -- Config statusline
  
 "# Key Mappings
     "## Beginning and and of Line
