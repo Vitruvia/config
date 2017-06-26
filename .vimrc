@@ -30,6 +30,7 @@ filetype off                  " required
     "## Markdown
      Plugin 'https://github.com/tpope/vim-markdown'
      Plugin 'https://github.com/nelstrom/vim-markdown-folding'
+     Plugin 'https://github.com/JamshedVesuna/vim-markdown-preview'
 
     "## Themes
      " Plugin 'luochen1990/rainbow'                                  
@@ -64,6 +65,7 @@ filetype off                  " required
     let g:session_autoload='yes'
     let g:session_autosave='no'
     let g:session_autosave_periodic = 5
+    let g:session_default_to_last = 1
 
     "## Nvim-R
         "Autostart R
@@ -76,7 +78,17 @@ filetype off                  " required
         vmap <Space> <Plug>RDSendSelection
         nmap <Space> <Plug>RDSendLine
 
+        " Use Ctrl+Space to do omnicompletion:
+        if has("gui_running")
+            inoremap <C-Space> <C-x><C-o>
+        else
+            inoremap <Nul> <C-x><C-o>
+        endif
 
+    "## Markdown-Preview
+    let vim_markdown_preview_toggle=1
+    let vim_markdown_preview_temp_file=0
+    let vim_markdown_preview_browser='firefox'
 
 
 "# Colorscheme
@@ -117,10 +129,23 @@ colorscheme SerialExperimentsLain
     set shiftwidth=4    "Size of an indent
     set softtabstop=4   "Columns per TAB
     
-    "## TODO -- Windowsize on GUI
+    "## To improve -- Windowsize on GUI
      call rpcnotify(0, 'Gui', 'WindowMaximized', 1)
 
     "## TODO -- Config statusline
+    "
+    "## Text Wrapping and formatting
+    set textwidth=72
+    set wrapmargin=2
+    set fo+=t
+    set fo-=l
+    set fo-=o
+    set wrap
+    set nolist
+    
+    "## A colored column to indicate wrapping limit
+    set colorcolumn=+6
+    highlight ColorColumn ctermbg=lightblue guibg=#556a92
  
 "# Key Mappings
     "## Beginning and and of Line
@@ -161,15 +186,12 @@ colorscheme SerialExperimentsLain
     nnoremap <leader>P "+P
     vnoremap <leader>p "+p
     vnoremap <leader>P "+P
+
+    "## Clear Search Highlighting
+    nnoremap <CR> :noh<CR><CR>
+
+    "## Toggle paste
+    set pastetoggle=<f5>
     
-    "## Text Wrapping
-    set textwidth=72
-    set wrapmargin=2
-    set fo+=t
-    set fo-=l
-    set wrap
-    set nolist
-    
-    "## A colored column to indicate wrapping limit
-    set colorcolumn=+6
-    highlight ColorColumn ctermbg=lightblue guibg=#556a92
+    "Fix marks for Brazilian keyboard
+    nnoremap ' ` 
