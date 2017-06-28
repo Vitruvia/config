@@ -27,6 +27,9 @@ filetype off                  " required
      Plugin 'https://github.com/jalvesaq/Nvim-R'                   
      Plugin 'https://github.com/jalvesaq/colorout'                 
 
+    "## LaTeX
+     Plugin 'https://github.com/vim-latex/vim-latex'
+
     "## Markdown
      Plugin 'https://github.com/tpope/vim-markdown'
      Plugin 'https://github.com/nelstrom/vim-markdown-folding'
@@ -49,10 +52,13 @@ filetype off                  " required
      " 
      " Brief help
      " :PluginList       - lists configured plugins
-     " :PluginInstall    - installs plugins; append `!` to update or just
+     " :PluginInstall    - installs plugins; append `!` to update or 
+     " just
      " :PluginUpdate
-     " :PluginSearch foo - searches for foo; append `!` to refresh local cache
-     " :PluginClean      - confirms removal of unused plugins; append `!` to
+     " :PluginSearch foo - searches for foo; append `!` to refresh local
+     " cache
+     " :PluginClean      - confirms removal of unused plugins;
+     " append `!` to
      " auto-approve removal
      "
      " see :h vundle for more details or wiki for FAQ
@@ -62,10 +68,10 @@ filetype off                  " required
 
 "# Individual Plugin Options
     "## vim-session
-    let g:session_autoload='yes'
+    let g:session_autoload='no'
     let g:session_autosave='no'
-    let g:session_autosave_periodic = 5
-    let g:session_default_to_last = 1
+    " let g:session_autosave_periodic = 5
+    " let g:session_default_to_last = 1
 
     "## Nvim-R
         "Autostart R
@@ -99,13 +105,16 @@ filetype off                  " required
 "information.)
 if (empty($TMUX))
   if (has("nvim"))
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/
+    "2198 >
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   endif
   "For Neovim > 0.1.5 and Vim > patch 7.4.1799 <
-  "https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162
+  "https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac1
+  "75162
   "> Based on Vim patch 7.4.1770 (`guicolors` option) <
-  "https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd
+  "https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65
+  "b25cd
   ">
   " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
   if (has("termguicolors"))
@@ -136,17 +145,70 @@ colorscheme SerialExperimentsLain
     "
     "## Text Wrapping and formatting
     set textwidth=72
-    set wrapmargin=2
+    set wrapmargin=0
     set fo+=t
     set fo-=l
     set fo-=o
+    set fo-=j
     set wrap
     set nolist
-    
-    "## A colored column to indicate wrapping limit
-    set colorcolumn=+6
-    highlight ColorColumn ctermbg=lightblue guibg=#556a92
+
+    " "## A colored column to indicate wrapping limit
+    " set colorcolumn=+6
+    " highlight ColorColumn ctermbg=lightblue guibg=#556a92
  
+    "## Highlight text when too long
+    let g:highlight_overlength = v:true
+    let g:highlight_overlength_length = 80
+    let g:load_overlength = v:true
+
+    " Use :call ToggleOverlength()
+    " to toggle whether or not you show highlights
+    function! ToggleOverlength() abort
+      let g:highlight_overlength = !g:highlight_overlength
+
+      if g:highlight_overlength
+        call HighlighOverlength()
+      else
+        call ClearOverlength()
+      endif
+    endfunction
+
+    " Use :call ClearOverlength()
+    " to just clear the current highlights
+    " They will probably show up again when you enter the buffer again though.
+    function! ClearOverlength() abort
+      if exists('w:last_overlength')
+        " Just try and delete it
+        " Don't worry if it messes up
+        try
+          call matchdelete(w:last_overlength)
+        catch
+        endtry
+        unlet w:last_overlength
+      endif
+    endfunction
+
+
+    function! HighlighOverlength() abort
+      call ClearOverlength()
+
+      if g:highlight_overlength
+        if !exists('w:last_overlength')
+          let w:last_overlength = matchadd('OverLength', '\%' . g:highlight_overlength_length . 'v.*')
+        endif
+      endif
+    endfunction
+
+
+    if g:load_overlength
+      augroup vimrc_autocmds
+        au!
+        autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#8b0000
+        autocmd BufEnter * call HighlighOverlength()
+      augroup END
+    endif
+
 "# Key Mappings
     "## Beginning and and of Line
     nnoremap ç ^
@@ -175,6 +237,9 @@ colorscheme SerialExperimentsLain
 
     "## Disable mouse
     set mouse=
+
+    "## Toggle Highlighting when beyond 80 columns
+    nnoremap <f4> :call ToggleOverlength()<CR>
 
     "## Copy to clipboard
     vnoremap  <leader>y  "+y
