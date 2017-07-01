@@ -35,6 +35,10 @@ filetype off                  " required
      Plugin 'https://github.com/nelstrom/vim-markdown-folding'
      Plugin 'https://github.com/JamshedVesuna/vim-markdown-preview'
 
+    "## File Conversion
+    Plugin 'https://github.com/vim-pandoc/vim-pandoc'
+    Plugin 'https://github.com/vim-pandoc/vim-pandoc-syntax'
+
     "## Themes
      " Plugin 'luochen1990/rainbow'                                  
      Plugin 'https://github.com/lu-ren/SerialExperimentsLain'
@@ -42,6 +46,9 @@ filetype off                  " required
     "## Writing and note taking
      Plugin 'https://github.com/beloglazov/vim-online-thesaurus'   
      Plugin 'https://github.com/vimwiki/vimwiki'                   
+
+     "## Highlighting when overlength
+     Plugin 'https://github.com/tjdevries/overlength.vim'
 
     
      "  All of your Plugins must be added before the following line
@@ -95,6 +102,10 @@ filetype off                  " required
     let vim_markdown_preview_toggle=1
     let vim_markdown_preview_temp_file=0
     let vim_markdown_preview_browser='firefox'
+
+    "## HighlightOverlength
+    let overlength_default_overlength = 73 
+    let overlength_default_to_textwidth = 0
 
 
 "# Colorscheme
@@ -157,58 +168,6 @@ colorscheme SerialExperimentsLain
     " set colorcolumn=+6
     " highlight ColorColumn ctermbg=lightblue guibg=#556a92
  
-    "## Highlight text when too long
-    let g:highlight_overlength = v:true
-    let g:highlight_overlength_length = 80
-    let g:load_overlength = v:true
-
-    " Use :call ToggleOverlength()
-    " to toggle whether or not you show highlights
-    function! ToggleOverlength() abort
-      let g:highlight_overlength = !g:highlight_overlength
-
-      if g:highlight_overlength
-        call HighlighOverlength()
-      else
-        call ClearOverlength()
-      endif
-    endfunction
-
-    " Use :call ClearOverlength()
-    " to just clear the current highlights
-    " They will probably show up again when you enter the buffer again though.
-    function! ClearOverlength() abort
-      if exists('w:last_overlength')
-        " Just try and delete it
-        " Don't worry if it messes up
-        try
-          call matchdelete(w:last_overlength)
-        catch
-        endtry
-        unlet w:last_overlength
-      endif
-    endfunction
-
-
-    function! HighlighOverlength() abort
-      call ClearOverlength()
-
-      if g:highlight_overlength
-        if !exists('w:last_overlength')
-          let w:last_overlength = matchadd('OverLength', '\%' . g:highlight_overlength_length . 'v.*')
-        endif
-      endif
-    endfunction
-
-
-    if g:load_overlength
-      augroup vimrc_autocmds
-        au!
-        autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#8b0000
-        autocmd BufEnter * call HighlighOverlength()
-      augroup END
-    endif
-
 "# Key Mappings
     "## Beginning and and of Line
     nnoremap ç ^
@@ -238,8 +197,8 @@ colorscheme SerialExperimentsLain
     "## Disable mouse
     set mouse=
 
-    "## Toggle Highlighting when beyond 80 columns
-    nnoremap <f4> :call ToggleOverlength()<CR>
+    "## Toggle Highlighting when beyond textwidth columns
+    nnoremap <f4> :call overlength#toggle()<CR>
 
     "## Copy to clipboard
     vnoremap  <leader>y  "+y
