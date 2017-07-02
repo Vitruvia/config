@@ -107,6 +107,11 @@ filetype off                  " required
     let overlength_default_overlength = 73 
     let overlength_default_to_textwidth = 0
 
+    "## Vim-Latex
+    set grepprg=grep\ -nH\ $
+    let g:tex_flavor='latex'
+
+
 
 "# Colorscheme
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.  If
