@@ -215,7 +215,7 @@ colorscheme SerialExperimentsLain
     nnoremap <CR> :noh<CR><CR>
 
     "## Toggle paste
-    set pastetoggle=<f5>
+    " set pastetoggle=<f5>
     
     "Fix marks for Brazilian keyboard
     nnoremap ' ` 
