@@ -6,34 +6,35 @@ filetype off                  " required
     call vundle#begin()
 
     "## let Vundle manage Vundle, required
-     Plugin 'VundleVim/Vundle.vim'
+    Plugin 'VundleVim/Vundle.vim'
 
     "## Faster editing and navigation
-     Plugin 'https://github.com/tpope/vim-unimpaired'              
-     Plugin 'tpope/vim-surround'                                   
-     Plugin 'tpope/vim-repeat'                                     
-     Plugin 'https://github.com/tpope/vim-commentary'              
-     Plugin 'guns/vim-sexp'                                        
-     Plugin 'tpope/vim-sexp-mappings-for-regular-people'
-     Plugin 'https://github.com/xolox/vim-session'                 
-     Plugin 'https://github.com/xolox/vim-misc'                    
+    Plugin 'https://github.com/tpope/vim-unimpaired'              
+    Plugin 'tpope/vim-surround'                                   
+    Plugin 'tpope/vim-repeat'                                     
+    Plugin 'https://github.com/tpope/vim-commentary'              
+    Plugin 'guns/vim-sexp'                                        
+    Plugin 'tpope/vim-sexp-mappings-for-regular-people'
+    Plugin 'https://github.com/xolox/vim-session'                 
+    Plugin 'https://github.com/xolox/vim-misc'                    
 
     "## Clojure
-     Plugin 'tpope/vim-fireplace'                                  
-     Plugin 'guns/vim-clojure-static'                              
-     Plugin 'guns/vim-clojure-highlight'                           
+    Plugin 'tpope/vim-fireplace'                                  
+    Plugin 'guns/vim-clojure-static'                              
+    Plugin 'guns/vim-clojure-highlight'                           
 
     "## R
-     Plugin 'https://github.com/jalvesaq/Nvim-R'                   
-     Plugin 'https://github.com/jalvesaq/colorout'                 
+    Plugin 'https://github.com/jalvesaq/Nvim-R'                   
+    Plugin 'https://github.com/jalvesaq/colorout'                 
 
     "## LaTeX
-     Plugin 'https://github.com/vim-latex/vim-latex'
+    Plugin 'https://github.com/vim-latex/vim-latex'
+	Plugin 'https://github.com/donRaphaco/neotex'
 
     "## Markdown
-     Plugin 'https://github.com/tpope/vim-markdown'
-     Plugin 'https://github.com/nelstrom/vim-markdown-folding'
-     Plugin 'https://github.com/JamshedVesuna/vim-markdown-preview'
+    Plugin 'https://github.com/tpope/vim-markdown'
+    Plugin 'https://github.com/nelstrom/vim-markdown-folding'
+    Plugin 'https://github.com/JamshedVesuna/vim-markdown-preview'
 
     "## File Conversion
     Plugin 'https://github.com/vim-pandoc/vim-pandoc'
@@ -41,14 +42,14 @@ filetype off                  " required
 
     "## Themes
      " Plugin 'luochen1990/rainbow'                                  
-     Plugin 'https://github.com/lu-ren/SerialExperimentsLain'
+    Plugin 'https://github.com/lu-ren/SerialExperimentsLain'
      
     "## Writing and note taking
-     Plugin 'https://github.com/beloglazov/vim-online-thesaurus'   
-     Plugin 'https://github.com/vimwiki/vimwiki'                   
+    Plugin 'https://github.com/beloglazov/vim-online-thesaurus'   
+    Plugin 'https://github.com/vimwiki/vimwiki'                   
 
      "## Highlighting when overlength
-     Plugin 'https://github.com/tjdevries/overlength.vim'
+    Plugin 'https://github.com/tjdevries/overlength.vim'
 
     
      "  All of your Plugins must be added before the following line
@@ -144,6 +145,7 @@ colorscheme SerialExperimentsLain
 "# General configuration
     set number   "Show line Numbers
     set hidden   "Allow Hidden Buffers
+    set updatetime=1000 "Writes swap file to disk if nothing is typed
 
     "## Autoexpand filepath
     cnoremap <expr> %%  getcmdtype() == ':' ? expand('%:h').'/' : '%%' 
@@ -158,6 +160,7 @@ colorscheme SerialExperimentsLain
      call rpcnotify(0, 'Gui', 'WindowMaximized', 1)
 
     "## TODO -- Config statusline
+    set laststatus=2
     "
     "## Text Wrapping and formatting
     set textwidth=72

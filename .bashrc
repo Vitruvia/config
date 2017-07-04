@@ -127,6 +127,7 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 alias config='/usr/bin/git --git-dir=/home/thales/.cfg/ --work-tree=/home/thales'
+alias prob='/usr/bin/git --git-dir=/home/thales/.prob/ --work-tree=/home/thales'
 
 # Open the terminal at the desired position
 alias gnome-terminal="gnome-terminal --geometry 140x42-30-11"
