@@ -128,7 +128,7 @@ syntax enable
 
     "## Rainbow
     let g:rainbow_conf = {
-	\	'guifgs': ['#C0B1C2', '#5E4A95', '#556a92','#759fad'],
+	\	'guifgs': ['#C0B1C2', '#66789C', '#02868B','#759fad'],
 	\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan',
     \'lightmagenta'],
     \   'operators': '',
@@ -152,7 +152,12 @@ syntax enable
     \'start=/{/ end=/}/ fold containedin=vimFuncBody'],
 	\		},
     \       'html': {
-    \			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+    \			'parentheses': ['start=/\v\<((area|base|br|col|' +
+    \           'embed|hr|img|input|keygen|link|menuitem|meta|param|'+
+    \           'source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)'+
+    \           '(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'['+
+    \           '^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ '+
+    \           'end=#</\z1># fold'],
 	\		},
 	\		'css': 0,
 	\	}
