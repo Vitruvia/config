@@ -1,5 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
+syntax enable
 "# Plugin installation with Vundle
     "## set the runtime path to include Vundle and initialize
     set rtp+=~/.vim/bundle/Vundle.vim
@@ -37,13 +38,19 @@ filetype off                  " required
     Plugin 'https://github.com/JamshedVesuna/vim-markdown-preview'
     " Plugin 'https://github.com/suan/vim-instant-markdown'
 
+    "## Python
+    Plugin 'https://github.com/python-mode/python-mode'
+
     "## File Conversion
     Plugin 'https://github.com/vim-pandoc/vim-pandoc'
     Plugin 'https://github.com/vim-pandoc/vim-pandoc-syntax'
 
     "## Themes
-     " Plugin 'luochen1990/rainbow'                                  
+    Plugin 'luochen1990/rainbow'                                  
     Plugin 'https://github.com/lu-ren/SerialExperimentsLain'
+
+    "##Status Line
+    Plugin 'https://github.com/itchyny/lightline.vim'
      
     "## Writing and note taking
     Plugin 'https://github.com/beloglazov/vim-online-thesaurus'   
@@ -113,6 +120,45 @@ filetype off                  " required
     set grepprg=grep\ -nH\ $
     let g:tex_flavor='latex'
 
+    "## PythonMode
+    let g:pymode_python = 'python3'
+    let g:pymode_options_colorcolumn = 0
+    let g:pymode_rope_complete_on_dot = 0
+    let g:pymode_syntax_slow_sync = 0
+
+    "## Rainbow
+    let g:rainbow_conf = {
+	\	'guifgs': ['#C0B1C2', '#5E4A95', '#556a92','#759fad'],
+	\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan',
+    \'lightmagenta'],
+    \   'operators': '',
+	\	'parentheses': ['start=/(/ end=/)/ fold', 
+    \'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+	\	'separately': {
+	\		'*': {},
+	\		'tex': {
+	\			'parentheses': ['start=/(/ end=/)/', 
+    \'start=/\[/ end=/\]/'],
+	\		},
+	\		'lisp': {
+	\			'guifgs':['#C0B1C2','#556a92', '#876bd6', '#4499c7', 
+    \'#759fad'],
+	\		},
+	\		'vim': {
+	\			'parentheses': ['start=/(/ end=/)/', 
+    \'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold',
+    \'start=/(/ end=/)/ containedin=vimFuncBody',
+    \'start=/\[/ end=/\]/ containedin=vimFuncBody',
+    \'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+	\		},
+    \       'html': {
+    \			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+	\		},
+	\		'css': 0,
+	\	}
+	\}
+
+    let g:rainbow_active = 1
 
 
 "# Colorscheme
@@ -139,9 +185,7 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
-syntax enable
 colorscheme SerialExperimentsLain
-
 
 "# General configuration
     set number   "Show line Numbers

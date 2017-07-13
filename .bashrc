@@ -136,3 +136,4 @@ alias linalg='/usr/bin/git --git-dir=/home/thales/Documents/'\
 
 # Open the terminal at the desired position
 alias gnome-terminal="gnome-terminal --geometry 140x42-30-11"
+source virtualenvwrapper.sh
