@@ -1,6 +1,9 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 syntax enable
+if has ('win32') || has('win64')
+    let &shell='cmd.exe'
+endif
 "# Plugin installation with Vundle
     "## set the runtime path to include Vundle and initialize
     set rtp+=~/.vim/bundle/Vundle.vim
@@ -126,9 +129,17 @@ syntax enable
     let g:pymode_rope_complete_on_dot = 0
     let g:pymode_syntax_slow_sync = 0
 
+    "## Wiki
+    let wiki_desiderata = {}
+    let wiki_desiderata.path ='~/Documents/Writing/Desiderata/'
+                \+ 'desiderata_wiki'
+    let wiki_desiderata.path_html ='~/Documents/Writing/Desiderata/'
+                \ + 'desiderata_wiki/desiderata_wiki_html'
+    let g:vimwiki_list = [wiki_desiderata] 
+
     "## Rainbow
     let g:rainbow_conf = {
-	\	'guifgs': ['#C0B1C2', '#66789C', '#02868B','#759fad'],
+	\	'guifgs': ['#759fad','#66789C', '#02868B', '#C0B1C2'],
 	\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan',
     \'lightmagenta'],
     \   'operators': '',
