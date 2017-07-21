@@ -100,10 +100,6 @@ endif
     " let g:session_autosave_periodic = 5
     " let g:session_default_to_last = 1
 
-    "## Neomake
-    autocmd! BufWritePost * Neomake
-    autocmd Filetype c nnoremap <F9> :w<CR>:make %<<CR>:!./%<<CR>
-
     "## Nvim-R
         "Autostart R
         autocmd FileType r if string(g:SendCmdToR) == 
@@ -138,6 +134,7 @@ endif
     "## PythonMode
     let g:pymode_python = 'python3'
     let g:pymode_options_colorcolumn = 0
+    let g:pymode_rope_completion = 0
     let g:pymode_rope_complete_on_dot = 0
     let g:pymode_syntax_slow_sync = 0
 
@@ -152,6 +149,9 @@ endif
     let wiki_desiderata.path_html ='~/Documents/Writing/Desiderata/'
                 \ + 'desiderata_wiki/desiderata_wiki_html'
     let g:vimwiki_list = [wiki_desiderata] 
+
+    "## YCM
+    let g:ycm_server_python_interpreter = '/usr/bin/python'
 
     "## TODO - Lightline
 
@@ -306,3 +306,7 @@ colorscheme SerialExperimentsLain
     
     "Fix marks for Brazilian keyboard
     nnoremap ' ` 
+
+"# Filtype options
+    "## C
+    autocmd Filetype c nnoremap <F9> :w<CR>:make %<<CR>:!./%<<CR>
