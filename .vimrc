@@ -65,9 +65,6 @@ endif
     "## Highlighting when overlength
     Plugin 'https://github.com/tjdevries/overlength.vim'
 
-    "## Linting
-    Plugin 'https://github.com/neomake/neomake'
-
     "## Autocomplete
     Plugin 'https://github.com/Valloric/YouCompleteMe'
     
