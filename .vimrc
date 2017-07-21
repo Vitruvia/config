@@ -59,6 +59,8 @@ endif
     Plugin 'https://github.com/beloglazov/vim-online-thesaurus'   
     Plugin 'https://github.com/vimwiki/vimwiki'                   
 
+    "## Multiple languages on demand
+    Plugin 'https://github.com/sheerun/vim-polyglot'
      "## Highlighting when overlength
     Plugin 'https://github.com/tjdevries/overlength.vim'
 
@@ -86,6 +88,9 @@ endif
 
 
 "# Individual Plugin Options
+    
+    "## vim-polyglot
+    let g:polyglot_disabled = ['python']
     "## vim-session
     let g:session_autoload='no'
     let g:session_autosave='no'
@@ -116,7 +121,7 @@ endif
     let vim_markdown_preview_browser='firefox'
 
     "## HighlightOverlength
-    let overlength_default_overlength = 73 
+    let overlength_default_overlength = 74 
     let overlength_default_to_textwidth = 0
 
     "## Vim-Latex
@@ -129,6 +134,10 @@ endif
     let g:pymode_rope_complete_on_dot = 0
     let g:pymode_syntax_slow_sync = 0
 
+    "## Sage settings
+     autocmd BufRead,BufNewFile *.sage,*.pyx,*.spyx set filetype=python
+     autocmd FileType python set makeprg=sage\ -b\ &&\ sage\ -t\ %
+
     "## Wiki
     let wiki_desiderata = {}
     let wiki_desiderata.path ='~/Documents/Writing/Desiderata/'
@@ -136,6 +145,8 @@ endif
     let wiki_desiderata.path_html ='~/Documents/Writing/Desiderata/'
                 \ + 'desiderata_wiki/desiderata_wiki_html'
     let g:vimwiki_list = [wiki_desiderata] 
+
+    "## TODO - Lightline
 
     "## Rainbow
     let g:rainbow_conf = {
