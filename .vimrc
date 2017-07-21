@@ -61,9 +61,15 @@ endif
 
     "## Multiple languages on demand
     Plugin 'https://github.com/sheerun/vim-polyglot'
-     "## Highlighting when overlength
+
+    "## Highlighting when overlength
     Plugin 'https://github.com/tjdevries/overlength.vim'
 
+    "## Linting
+    Plugin 'https://github.com/neomake/neomake'
+
+    "## Autocomplete
+    Plugin 'https://github.com/Valloric/YouCompleteMe'
     
      "  All of your Plugins must be added before the following line
      call vundle#end()           " required
@@ -79,8 +85,7 @@ endif
      " :PluginSearch foo - searches for foo; append `!` to refresh local
      " cache
      " :PluginClean      - confirms removal of unused plugins;
-     " append `!` to
-     " auto-approve removal
+     " append `!` to  auto-approve removal
      "
      " see :h vundle for more details or wiki for FAQ
      " Put your non-Plugin stuff after this line
@@ -91,11 +96,16 @@ endif
     
     "## vim-polyglot
     let g:polyglot_disabled = ['python']
+
     "## vim-session
     let g:session_autoload='no'
     let g:session_autosave='no'
     " let g:session_autosave_periodic = 5
     " let g:session_default_to_last = 1
+
+    "## Neomake
+    autocmd! BufWritePost * Neomake
+    autocmd Filetype c nnoremap <F9> :w<CR>:make %<<CR>:!./%<<CR>
 
     "## Nvim-R
         "Autostart R
