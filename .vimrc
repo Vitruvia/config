@@ -1,9 +1,13 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 syntax enable
+
+"Windows specific options
 if has ('win32') || has('win64')
     let &shell='cmd.exe'
+    let g:loaded_youcompleteme = 0
 endif
+
 "# Plugin installation with Vundle
     "## set the runtime path to include Vundle and initialize
     set rtp+=~/.vim/bundle/Vundle.vim
