@@ -130,6 +130,10 @@ endif
     "## HighlightOverlength
     let overlength_default_overlength = 74 
     let overlength_default_to_textwidth = 0
+    call overlength#set_overlength('markdown', 0)
+    call overlength#set_overlength('wiki', 0)
+    autocmd BufRead,BufEnter,BufNewFile
+                \ *.wiki,*.md call overlength#disable()
 
     "## Vim-Latex
     set grepprg=grep\ -nH\ $
@@ -147,12 +151,19 @@ endif
      autocmd FileType python set makeprg=sage\ -b\ &&\ sage\ -t\ %
 
     "## Wiki
-    let wiki_desiderata = {}
-    let wiki_desiderata.path ='~/Documents/Writing/Desiderata/'
-                \+ 'desiderata_wiki'
-    let wiki_desiderata.path_html ='~/Documents/Writing/Desiderata/'
-                \ + 'desiderata_wiki/desiderata_wiki_html'
-    let g:vimwiki_list = [wiki_desiderata] 
+        "### Wiki for the desiderata book
+        let wiki_desiderata = {}
+        let wiki_desiderata.path ='~/Documents/Writing/Desiderata/'
+        let wiki_desiderata.path_html ='~/Documents/Writing/Desiderata/'
+                    \ + 'desiderata_wiki_html'
+
+        "### Wiki for the OpenHuman project
+        let wiki_openhuman = {}
+        let wiki_openhuman.path='~/Documents/Writing/OpenHuman'
+        let wiki_openhuman.path_html='~/Documents/Writing/OpenHuman/'
+                    \ + 'OpenHuman_wiki_html'
+
+    let g:vimwiki_list = [wiki_desiderata, wiki_openhuman] 
 
     "## YCM
     let g:ycm_server_python_interpreter = '/usr/bin/python'
@@ -254,6 +265,7 @@ colorscheme SerialExperimentsLain
     set fo-=j
     set wrap
     set nolist
+    autocmd BufRead,BufEnter,BufNewFile *.md,*.wiki set textwidth=0
 
     " "## A colored column to indicate wrapping limit
     " set colorcolumn=+6
