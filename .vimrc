@@ -164,13 +164,11 @@ endif
                     \'OpenHuman_wiki_html'
 
         "### Wiki for writing notes
-        let general_notes_wiki = {}
-        let general_notes_wiki.path='~/Documents/Writing/'.
-                    \'general_notes'
-        let general_notes_wiki.path_html='~/Documents/Writing/'.
-                    \'general_notes/general_notes_wiki_html'
+        let wiki_Writing = {}
+        let wiki_Writing.path='~/Documents/Writing/'
+        let wiki_Writing.path_html='~/Documents/Writing/Writing_html'
         
-    let g:vimwiki_list = [general_notes_wiki,wiki_desiderata, 
+    let g:vimwiki_list = [wiki_Writing,wiki_desiderata, 
                 \ wiki_openhuman]
 
     "## YCM
