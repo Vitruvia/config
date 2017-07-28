@@ -133,7 +133,7 @@ endif
     call overlength#set_overlength('markdown', 0)
     call overlength#set_overlength('wiki', 0)
     autocmd BufRead,BufEnter,BufNewFile
-                \ *.wiki,*.md call overlength#disable()
+                \ *.wiki,*.md,*.txt call overlength#disable()
 
     "## Vim-Latex
     set grepprg=grep\ -nH\ $
@@ -154,16 +154,24 @@ endif
         "### Wiki for the desiderata book
         let wiki_desiderata = {}
         let wiki_desiderata.path ='~/Documents/Writing/Desiderata/'
-        let wiki_desiderata.path_html ='~/Documents/Writing/Desiderata/'
-                    \ + 'desiderata_wiki_html'
+        let wiki_desiderata.path_html ='~/Documents/Writing/'.
+                    \'Desiderata/desiderata_wiki_html'
 
         "### Wiki for the OpenHuman project
         let wiki_openhuman = {}
         let wiki_openhuman.path='~/Documents/Writing/OpenHuman'
-        let wiki_openhuman.path_html='~/Documents/Writing/OpenHuman/'
-                    \ + 'OpenHuman_wiki_html'
+        let wiki_openhuman.path_html='~/Documents/Writing/OpenHuman/'.
+                    \'OpenHuman_wiki_html'
 
-    let g:vimwiki_list = [wiki_desiderata, wiki_openhuman] 
+        "### Wiki for writing notes
+        let general_notes_wiki = {}
+        let general_notes_wiki.path='~/Documents/Writing/'.
+                    \'general_notes'
+        let general_notes_wiki.path_html='~/Documents/Writing/'.
+                    \'general_notes/general_notes_wiki_html'
+        
+    let g:vimwiki_list = [general_notes_wiki,wiki_desiderata, 
+                \ wiki_openhuman]
 
     "## YCM
     let g:ycm_server_python_interpreter = '/usr/bin/python'
@@ -196,11 +204,11 @@ endif
     \'start=/{/ end=/}/ fold containedin=vimFuncBody'],
 	\		},
     \       'html': {
-    \			'parentheses': ['start=/\v\<((area|base|br|col|' +
-    \           'embed|hr|img|input|keygen|link|menuitem|meta|param|'+
-    \           'source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)'+
-    \           '(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'['+
-    \           '^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ '+
+    \			'parentheses': ['start=/\v\<((area|base|br|col|'.
+    \           'embed|hr|img|input|keygen|link|menuitem|meta|param|'.
+    \           'source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)'.
+    \           '(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'['.
+    \           '^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ '.
     \           'end=#</\z1># fold'],
 	\		},
 	\		'css': 0,
@@ -265,7 +273,8 @@ colorscheme SerialExperimentsLain
     set fo-=j
     set wrap
     set nolist
-    autocmd BufRead,BufEnter,BufNewFile *.md,*.wiki set textwidth=0
+    autocmd BufRead,BufEnter,BufNewFile *.md,*.wiki
+                \ setlocal textwidth=0
 
     " "## A colored column to indicate wrapping limit
     " set colorcolumn=+6
