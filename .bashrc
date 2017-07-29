@@ -129,10 +129,6 @@ fi
 
 alias config='/usr/bin/git --git-dir=/home/thales/.cfg/'\
 ' --work-tree=/home/thales'
-alias prob='/usr/bin/git --git-dir=/home/thales/Documents'\
-'/PrTh/.prob/ --work-tree=/home/thales/Documents/PrTh'
-alias linalg='/usr/bin/git --git-dir=/home/thales/Documents/'\
-'Linalg/.linalg/ --work-tree=/home/thales/Documents/Linalg'
 
 
 # Open the terminal at the desired position

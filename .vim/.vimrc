@@ -128,12 +128,8 @@ endif
     let vim_markdown_preview_browser='firefox'
 
     "## HighlightOverlength
-    let overlength_default_overlength = 74 
-    let overlength_default_to_textwidth = 0
-    call overlength#set_overlength('markdown', 0)
-    call overlength#set_overlength('wiki', 0)
-    autocmd BufRead,BufEnter,BufNewFile
-                \ *.wiki,*.md,*.txt call overlength#disable()
+    let overlength#default_overlength = 0 
+    let overlength#default_to_textwidth = 1
 
     "## Vim-Latex
     set grepprg=grep\ -nH\ $
@@ -156,17 +152,24 @@ endif
         let wiki_desiderata.path ='~/Documents/Writing/Desiderata/'
         let wiki_desiderata.path_html ='~/Documents/Writing/'.
                     \'Desiderata/desiderata_wiki_html'
+        let wiki_desiderata.diary_rel_path ='Desiderata_diary/'
+        let wiki_desiderata.diary_index='desiderata_diary'
+                    
 
         "### Wiki for the OpenHuman project
         let wiki_openhuman = {}
         let wiki_openhuman.path='~/Documents/Writing/OpenHuman'
         let wiki_openhuman.path_html='~/Documents/Writing/OpenHuman/'.
                     \'OpenHuman_wiki_html'
+        let wiki_openhuman.diary_rel_path='OpenHuman_diary/'
+        let wiki_openhuman.diary_index='openhuman_diary'
 
         "### Wiki for writing notes
         let wiki_Writing = {}
         let wiki_Writing.path='~/Documents/Writing/'
         let wiki_Writing.path_html='~/Documents/Writing/Writing_html'
+        let wiki_Writing.diary_rel_path='Writing_diary/'
+        let wiki_Writing.diary_index='writing_diary'
         
     let g:vimwiki_list = [wiki_Writing,wiki_desiderata, 
                 \ wiki_openhuman]
@@ -263,7 +266,7 @@ colorscheme SerialExperimentsLain
     set laststatus=2
     "
     "## Text Wrapping and formatting
-    set textwidth=72
+    set textwidth=0
     set wrapmargin=0
     set fo+=t
     set fo-=l
@@ -271,8 +274,8 @@ colorscheme SerialExperimentsLain
     set fo-=j
     set wrap
     set nolist
-    autocmd BufRead,BufEnter,BufNewFile *.md,*.wiki
-                \ setlocal textwidth=0
+    autocmd filetype vim,tex
+                \textwidth = 80
 
     " "## A colored column to indicate wrapping limit
     " set colorcolumn=+6
